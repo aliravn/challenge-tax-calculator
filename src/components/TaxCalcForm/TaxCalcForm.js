@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import './TaxCalcForm.css';
 
+        // TODO: add taxBracket mock object
+        // TODO: add progressive taxa calculation based on taxBracket
+        // TODO: show result always with 2 digits after delimiter
+        // TODO: add validation for dot / comma / letters / special chars
+        // TODO: display result with the same delimiter as the input
+
 const TaxCalcForm = () => {
     const [income, setIncome] = useState('');
     const [tax, setTax] = useState('');
@@ -10,8 +16,6 @@ const TaxCalcForm = () => {
     };
 
     const calulateTax = () => {
-        // TODO: add correct calculation based on progressive taxation
-        // TODO: limit result to 2 digits after comma
         const calcTax = income * 0.1;
         const taxToShow = `${calcTax} EUR`
         setTax(taxToShow);
@@ -40,7 +44,7 @@ const TaxCalcForm = () => {
                 className='inputField'
             />
         </div>    
-        
+
         <div className='formLine'>
             <button 
                 className='submitButton' 
