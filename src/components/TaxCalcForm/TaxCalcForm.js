@@ -3,10 +3,12 @@ import './TaxCalcForm.css';
 
 const TaxCalcForm = () => {
     return (
-        <div className='formContainer'>
-            <label htmlFor="income">Annual income:</label>
-            <input type="text" id="income" name="income" />
-        </div>
+        <section className='formContainer'>
+            <label htmlFor="income" className='inputLabel'>Annual income:</label>
+            <input type="text" id="income" name="income" className='inputField'/>
+
+            <button className='submitButton'>Calculate tax</button>
+        </section>
     );
 }
 

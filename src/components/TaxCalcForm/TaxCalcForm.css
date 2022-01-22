@@ -1,3 +1,22 @@
 .formContainer {
+  display: grid;
+  grid-template-columns: repeat(2 1fr);
+  grid-template-rows: repeat(2 1fr);
   background: lightgreen;
+  padding: 1rem;
+  width: 80%;
+  margin: 0 auto;
+ 
+  gap: 1rem;
+}
+
+.inputLabel {
+  text-align: right;
+}
+
+.inputField {
+  grid-column: 2 / span 2;
+}
+.submitButton {
+  grid-column: 2/ span 1
 }
