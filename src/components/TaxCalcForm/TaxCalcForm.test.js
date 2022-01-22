@@ -23,11 +23,9 @@ describe('TaxCalcForm', () => {
 
         const inputField = screen.getByLabelText(/annual income/i);
         const submitButton = screen.getByText(/calculate tax/i);
-        const resultsArea = screen.getByText(/tax to pay/i);
+        const resultsArea = screen.getByLabelText(/tax to pay/i);
         userEvent.type(inputField, '100');
         userEvent.click(submitButton);
-        expect(resultsArea).toHaveTextContent('10');
-
-        
+        expect(resultsArea).toHaveValue('10 EUR');
     });
 })
