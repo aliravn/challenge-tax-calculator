@@ -3,7 +3,7 @@ import './TaxCalcForm.css';
 
 const TaxCalcForm = () => {
     const [income, setIncome] = useState('');
-    const [tax, setTax] = useState('Please type in you annual income');
+    const [tax, setTax] = useState('');
 
     const onIncomeValueChange = (event) => {
             setIncome(event.target.value);
@@ -13,10 +13,12 @@ const TaxCalcForm = () => {
         // TODO: add correct calculation based on progressive taxation
         // TODO: limit result to 2 digits after comma
         const calcTax = income * 0.1;
-        setTax(calcTax);
+        const taxToShow = `${calcTax} EUR`
+        setTax(taxToShow);
     }
     return (
         <section className='formContainer'>
+        <div className='formLine'>
             <label htmlFor="income" className='inputLabel'>Annual income:</label>
             <input 
                 type="text" 
@@ -26,15 +28,28 @@ const TaxCalcForm = () => {
                 onChange={onIncomeValueChange} 
                 className='inputField'
             />
-
+        </div>
+        <div className='formLine'>
+            <label htmlFor="result" className='inputLabel'>Tax to pay:</label>
+            <input 
+                type="text" 
+                id="result" 
+                name="result" 
+                value={tax} 
+                disabled
+                className='inputField'
+            />
+        </div>    
+        
+        <div className='formLine'>
             <button 
                 className='submitButton' 
                 onClick={calulateTax}
             >
                Calculate tax
             </button>
-
-            <div className='result'>Tax to pay: {tax} EUR</div>
+        </div>
+        
         </section>
     );
 }
