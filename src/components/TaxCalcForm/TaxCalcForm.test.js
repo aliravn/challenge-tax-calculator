@@ -18,14 +18,54 @@ describe('TaxCalcForm', () => {
     });
 
 
-    it('calculates the tax and shows the result', async () => {
+    it('calculates the tax and shows the result', () => {
+    const testCases = {
+        'case1': {
+            'income': 9000,
+            'tax': 0
+        },
+        'case2': {
+            'income': 10000,
+            'tax': 0,
+        },
+        'case3': {
+            'income': 10009,
+            'tax': 0,
+        },
+        'case4': {
+            'income': 10010,
+            'tax': 1,
+        },
+        'case5': {
+            'income': 12000,
+            'tax':200,
+        },
+        'case6': {
+            'income': 56789,
+            'tax':8697,
+        },
+        'case7': {
+            'income': 1234567,
+            'tax':473326,
+        }
+    };
+
         render(<TaxCalcForm />);
 
         const inputField = screen.getByLabelText(/annual income/i);
         const submitButton = screen.getByText(/calculate tax/i);
         const resultsArea = screen.getByLabelText(/tax to pay/i);
-        userEvent.type(inputField, '100');
-        userEvent.click(submitButton);
-        expect(resultsArea).toHaveValue('10 EUR');
+
+        const checkTaxCalculation = (key, obj) => {
+            const {income, tax} = obj[key];
+            userEvent.clear(inputField);
+            userEvent.type(inputField, income.toString());
+            userEvent.click(submitButton);
+            expect(resultsArea).toHaveValue(`${tax} EUR`);
+        }
+
+        Object.keys(testCases).forEach(key => {
+            checkTaxCalculation(key, testCases);
+          });
     });
 })
