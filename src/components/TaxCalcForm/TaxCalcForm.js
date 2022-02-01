@@ -3,11 +3,6 @@ import { taxBracket } from './taxBracket.mock.js';
 
 import './TaxCalcForm.css';
 
-
-        // TODO: show result always with 2 digits after delimiter / 
-        // TODO: add validation for dot / comma / letters / special chars
-        // TODO: display result with the same delimiter as the input
-
 const {low, medium, high, open} = taxBracket; 
 
 const TaxCalcForm = () => {
@@ -56,22 +51,25 @@ const TaxCalcForm = () => {
         <div className='formLine'>
             <label htmlFor="income" className='inputLabel'>Annual income:</label>
             <input 
+                aria-label="enter amount of your annual income"
                 type="text" 
                 id="income" 
                 name="income" 
                 value={income} 
                 onChange={onIncomeValueChange} 
                 className='inputField'
+                pattern='[0-9]'
             />
         </div>
         <div className='formLine'>
             <label htmlFor="result" className='inputLabel'>Tax to pay:</label>
             <input 
+                aria-label='your tax to pay is'
                 type="text" 
                 id="result" 
                 name="result" 
                 value={tax} 
-                disabled
+                readonly
                 className='inputField'
             />
         </div>    
