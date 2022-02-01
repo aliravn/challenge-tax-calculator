@@ -3,8 +3,7 @@ import { taxBracket } from './taxBracket.mock.js';
 
 import './TaxCalcForm.css';
 
-        // TODO: add taxBracket mock object / done
-        // TODO: add progressive tax calculation based on taxBracket / done
+
         // TODO: show result always with 2 digits after delimiter / 
         // TODO: add validation for dot / comma / letters / special chars
         // TODO: display result with the same delimiter as the input
@@ -21,43 +20,29 @@ const TaxCalcForm = () => {
   
     const calc = (taxBase, taxRate) =>  taxBase * taxRate;
 
-// test case income = 150.000;
-// 150.000 - 100.000 ==> 50.000 x 40% = 20.000;
-// 100.000 - 30.000 ==> 70.000 x 25 = 17.500;
-// 30.000 - 10.000 ==> 20.000 x 10% = 2.000;
-// 10.000 - 0 ==> 10.000 x 0% = 0;
-// total to pay: 20.000 + 17.500 + 2.000 + 0 = 39.500;
-
     const calulateProgressiveTax = () => {
         let taxToPay = 0;
-        let taxationBase = 0;
-
-        if(income > 10000) {
-           taxationBase = income - low.incomeCap;
-        } else {
-            return taxToPay;
-        }
-
-        if(income <= 30000){
-            taxToPay += calc(taxationBase, medium.taxRate);
-            return taxToPay;
-        } else {
-            taxationBase = income - medium.incomeCap;
-            taxToPay += calc(medium.incomeCap - low.incomeCap, medium.taxRate);
-        }
-
-        if(income <= 100000) {
-            taxToPay += calc(taxationBase, high.taxRate);
-            return taxToPay;
-        } else {
-            taxationBase = income - high.incomeCap;
-            taxToPay += calc(high.incomeCap - medium.incomeCap, high.taxRate);
-        }
+        let taxBase = income;
 
         if(income > 100000) {
-            taxToPay += calc(taxationBase, open.taxRate);
-            return taxToPay;
+           taxBase = taxBase - high.incomeCap;
+           taxToPay += calc(taxBase, open.taxRate);
+           taxBase = high.incomeCap;
+        } 
+
+        if(income > 30000){
+            taxBase = taxBase - medium.incomeCap;
+            taxToPay += calc(taxBase, high.taxRate);
+            taxBase = medium.incomeCap;   
         }
+
+        if(income > 10000) {
+            taxBase = taxBase - low.incomeCap;
+            taxToPay += calc(taxBase, medium.taxRate);
+            taxBase = low.incomeCap;   
+        } 
+
+        return taxToPay;
     }
 
     const showCalculatedTax = () => {
