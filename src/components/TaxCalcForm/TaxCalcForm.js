@@ -4,8 +4,8 @@ import { taxBracket } from './taxBracket.mock.js';
 import './TaxCalcForm.css';
 
         // TODO: add taxBracket mock object / done
-        // TODO: add progressive tax calculation based on taxBracket
-        // TODO: show result always with 2 digits after delimiter
+        // TODO: add progressive tax calculation based on taxBracket / done
+        // TODO: show result always with 2 digits after delimiter / 
         // TODO: add validation for dot / comma / letters / special chars
         // TODO: display result with the same delimiter as the input
 
@@ -62,7 +62,7 @@ const TaxCalcForm = () => {
 
     const showCalculatedTax = () => {
         const calculatedTax = calulateProgressiveTax();
-        const taxToShow = `${calculatedTax} EUR`
+        const taxToShow = `${calculatedTax.toFixed(2)} EUR`
         setTax(taxToShow);
     }
 

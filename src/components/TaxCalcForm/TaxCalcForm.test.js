@@ -22,31 +22,31 @@ describe('TaxCalcForm', () => {
     const testCases = {
         'case1': {
             'income': 9000,
-            'tax': 0
+            'tax': '0.00',
         },
         'case2': {
             'income': 10000,
-            'tax': 0,
+            'tax': '0.00',
         },
         'case3': {
             'income': 10009,
-            'tax': 0,
+            'tax': '0.90',
         },
         'case4': {
             'income': 10010,
-            'tax': 1,
+            'tax': '1.00',
         },
         'case5': {
             'income': 12000,
-            'tax':200,
+            'tax': '200.00',
         },
         'case6': {
             'income': 56789,
-            'tax':8697,
+            'tax': '8697.25',
         },
         'case7': {
             'income': 1234567,
-            'tax':473326,
+            'tax': '473326.80',
         }
     };
 
